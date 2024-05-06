@@ -1,0 +1,24 @@
+﻿services:
+  leistungserfassung:
+    image: leistungserfassung
+    build:
+      context: .
+      dockerfile: db/Dockerfile
+    volumes:
+      - db:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    env_file:
+      - .env
+    
+
+volumes:
+  db:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /Users/mariemensing/RiderProjects/Leistungserfassung/Leistungserfassung/db/postgres
