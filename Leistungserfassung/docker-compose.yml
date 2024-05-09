@@ -1,6 +1,7 @@
 ﻿services:
   leistungserfassung:
-    image: leistungserfassung
+    image: lef_image
+    container_name: lef_container
     build:
       context: .
       dockerfile: db/Dockerfile
@@ -19,6 +20,7 @@
 
 volumes:
   db:
+    name: db_volume
     driver: local
     driver_opts:
       type: none
