@@ -5,6 +5,7 @@
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <UserSecretsId>aa2af1be-eb3e-47cf-8c94-1c46f7205a34</UserSecretsId>
     </PropertyGroup>
 
     <ItemGroup>
@@ -14,10 +15,13 @@
         <PrivateAssets>all</PrivateAssets>
       </PackageReference>
       <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.4" />
+      <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="8.0.0" />
+      <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.2" />
     </ItemGroup>
 
     <ItemGroup>
       <Folder Include="db\postgres\" />
+      <Folder Include="Migrations\" />
     </ItemGroup>
 
 </Project>

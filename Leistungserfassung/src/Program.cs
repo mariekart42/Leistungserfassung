@@ -1,20 +1,46 @@
-﻿// See https://aka.ms/new-console-template for more information
-
-Console.WriteLine("Hello, World!");
-
-// string[] test_data = ['GEBONR': 'V01A', 'ABRCODEIDBER': '¤E10¤', 'UIDBEAIDBER': '¤EFEG¤', 'OPWBTRIDBER': '¤E90.0001¤',
-//    'STATUS': 'E'},
-//   ['GEBONR': 'V01A', 'ABRCODEIDBER': '¤E10¤', 'UIDBEAIDBER': '¤EFEG¤', 'OPWBTRIDBER': '¤E91.0000¤',
-//    'STATUS': 'E'];
+﻿using Leistungserfassung.Data;
+using Leistungserfassung.Models;
+using Microsoft.Extensions.Configuration;
 
 
-// test_data = [
-//  {'GEBONR': 'V01A', 'ABRCODEIDBER': '¤E10¤', 'UIDBEAIDBER': '¤EFEG¤', 'OPWBTRIDBER': '¤E90.0001¤',
-//   'STATUS': 'E'},
-//  {'GEBONR': 'V01A', 'ABRCODEIDBER': '¤E10¤', 'UIDBEAIDBER': '¤EFEG¤', 'OPWBTRIDBER': '¤E91.0000¤',
-//   'STATUS': 'E'},
-// ]
-// bea = 'FEG'
+using LeistungserfassungContext context = new LeistungserfassungContext();
+
+// Products veggieSpecial = new Products()
+// {
+//     Name = "veggie Special",
+//     Price = 0.69M
+// };
+// context.Add(veggieSpecial);
 //
-// lol = get_gesamt_leistung(test_data, bea)
-// print('RESULT: ', lol)
+// Products somethingToEat = new Products()
+// {
+//     Name = "huge shit",
+//     Price = 9996
+// };
+// context.Add(somethingToEat);
+//
+// context.SaveChanges();
+
+
+var data = context.Products
+    .Where(p => p.Price > 2)
+    .OrderBy(p => p.Name);
+
+
+// same as this:
+// var data = from product in context.Products
+//     where product.Price > 2
+//     orderby product.Name
+//     select product;
+
+
+
+foreach (var product in data)
+{
+    Console.WriteLine($"ID: {product.Id}");
+    Console.WriteLine($"NAME: {product.Name}");
+    Console.WriteLine($"PRICE: {product.Price}");
+    Console.WriteLine("-----------------------");
+    
+}
+
