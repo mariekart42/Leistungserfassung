@@ -8,15 +8,19 @@ build:
 up:
 	@if [ -f ".env" ]; then \
 		docker-compose up -d; \
-	else echo "env file does not exist. Exit Program ..."; fi
+		echo "\n\033[0;32m: DATABASE IS READY TO ACCEPT CONNECTION\033[0m"; \
+	else echo ": ! env file does not exist. Exit Program ..."; fi
 
 re: fclean all
 
 down:
-	docker-compose down --remove-orphans
+	@docker-compose down --remove-orphans
+	@echo "\033[0;34m: container is down\033[0m"
 
 clean: down
-	docker image rm -f lef_image
+	@docker image rm -f lef_image 2>/dev/null || true
+	@echo "\033[0;31m: ! removed lef_image\033[0m"
 
 fclean: clean
-	docker volume rm db_volume
+	@docker volume rm -f db_volume >/dev/null 2>&1 || true
+	@echo "\033[0;31m: ! removed db_volume\033[0m"
