@@ -3,7 +3,7 @@ using Leistungserfassung.Data;
 using Leistungserfassung.Models;
 using Microsoft.Extensions.Configuration;
 
-SampleData obj = new SampleData();
+SampleData obj = SampleData.GetInstance();
 
 var data = obj.GetSampleData();
 
@@ -17,7 +17,6 @@ foreach (var lkos in data)
 
 Leistungskosten lol = new Leistungskosten()
 {
-    PKEY = "4",
     DATUMÄN1 = "14.02.2024",
     
     // [deleted here: USERÄN1, DATUMÄN2, USERÄN2, DATUMÄN3, USERÄN3]
@@ -71,14 +70,16 @@ obj.SetSampleData(lol);
 
 Console.WriteLine("\n\nSET NEW DATA\n\n");
 
-SampleData obj2 = new SampleData();
+// SampleData obj2 = new SampleData();
+// SampleData obj3 = new SampleData();
 
-var data2 = obj2.GetSampleData();
-
-foreach (var lkos in data2)
-{
-    Console.WriteLine($"ID: {lkos.Id}");
-    Console.WriteLine($"DATE: {lkos.DATUMZU}");
-    Console.WriteLine($"PKEY: {lkos.PKEY}");
-    Console.WriteLine("-----------------------");
-}
+// var data2 = obj2.GetSampleData();
+//
+// foreach (var lkos in data2)
+// {
+//     Console.WriteLine($"ID: {lkos.Id}");
+//     Console.WriteLine($"DATE: {lkos.DATUMZU}");
+//     Console.WriteLine($"PKEY: {lkos.PKEY}");
+//     Console.WriteLine($"RABATTIDBER: {lkos.RABATTIDBER}");
+//     Console.WriteLine("-----------------------");
+// }
